@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- FXML file defining the UI layout for the Weather App -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="684.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.weatherapi.SampleController">
+    <children>
+
+        <!-- Background Image -->
+        <ImageView fitHeight="695.0" fitWidth="618.0" layoutY="-11.0">
+            <image>
+                <!-- Image for the background, adjust the path as needed -->
+                <Image url="@images/bg.jpeg" />
+            </image>
+        </ImageView>
+
+        <!-- Transparent Boxes for Text -->
+        <VBox alignment="CENTER" layoutX="-8.0" maxHeight="614.0" prefHeight="614.0" prefWidth="626.0">
+            <!-- Top Section -->
+            <VBox style="-fx-background-color: rgba(255, 255, 255, 0.5); padding: 10px;">
+                <HBox alignment="CENTER" prefHeight="9.0" prefWidth="626.0" spacing="10.0">
+                    <!-- Label and text field for searching -->
+                    <Label fx:id="cityNameLabel" text="City Name">
+                        <!-- Set margin for the label -->
+                        <HBox.margin>
+                            <Insets top="10.0" />
+                        </HBox.margin>
+                    </Label>
+                    <!-- Text field for entering city name -->
+                    <TextField fx:id="searchTextField" promptText="Enter City Name">
+                        <!-- Set margin for the text field -->
+                        <HBox.margin>
+                            <Insets top="10.0" />
+                        </HBox.margin>
+                    </TextField>
+                    <!-- Button for initiating the search -->
+                    <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#getSearchResults" style="-fx-background-color: #E72929;" text="Search" textFill="WHITE">
+                        <!-- Set margin for the button -->
+                        <HBox.margin>
+                            <Insets top="10.0" />
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <!-- Set padding for the VBox -->
+                <padding>
+                    <Insets bottom="10.0" />
+                </padding>
+            </VBox>
+
+            <!-- Center Section -->
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="482.0" style="-fx-background-color: rgba(255, 255, 255, 0.5); padding: 10px;">
+                <!-- Images -->
+                <HBox alignment="CENTER" spacing="10.0">
+                    <!-- Image for weather condition -->
+                    <ImageView fx:id="weatherImage" fitHeight="173.0" fitWidth="175.0">
+                        <!-- Set margin for the ImageView -->
+                        <HBox.margin>
+                            <Insets />
+                        </HBox.margin>
+                    </ImageView>
+                    <!-- Set margin for the VBox -->
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </HBox>
+                <!-- Content inside VBox -->
+                <VBox prefHeight="187.0" prefWidth="566.0" spacing="10.0">
+                    <!-- Labels for city name, temperature, feels like, and country -->
+                    <VBox prefHeight="79.0" prefWidth="564.0">
+                        <!-- Label for city name -->
+                        <Text fx:id="cityName" fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="City" textAlignment="CENTER" wrappingWidth="622.6089782714844">
+                            <!-- Set font for the text -->
+                            <font>
+                                <Font name="Times New Roman" size="22.0" />
+                            </font>
+                        </Text>
+                        <!-- Label for feels like temperature -->
+                        <Text fx:id="feelslike_c" fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Feels like (°C)" textAlignment="CENTER" wrappingWidth="626.2304992675781">
+                            <!-- Set font for the text -->
+                            <font>
+                                <Font name="Times New Roman" size="22.0" />
+                            </font>
+                        </Text>
+                        <!-- Label for country -->
+                        <Text fx:id="country" fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" textAlignment="CENTER" wrappingWidth="626.0877685546875">
+                            <!-- Set font for the text -->
+                            <font>
+                                <Font name="Times New Roman" size="22.0" />
+                            </font>
+                        </Text>
+                    </VBox>
+
+                    <!-- Weather Details -->
+                    <VBox prefHeight="181.0" prefWidth="626.0" spacing="10.0">
+                        <!-- Box for temperature -->
+                        <HBox alignment="CENTER" prefHeight="39.0" prefWidth="572.0">
+                            <!-- Image for temperature -->
+                            <ImageView fitHeight="58.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                <!-- Set image for the temperature -->
+                                <image>
+                                    <Image url="@images/temp.png" />
+                                </image>
+                                <!-- Set margin for the ImageView -->
+                                <HBox.margin>
+                                    <Insets left="48.0" />
+                                </HBox.margin>
+                            </ImageView>
+                            <!-- Text for temperature -->
+                            <Text fx:id="temperature" text="Temperature (°C)" wrappingWidth="134.29296112060547">
+                                <!-- Set margin and font for the text -->
+                                <HBox.margin>
+                                    <Insets left="25.0" />
+                                </HBox.margin>
+                                <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                </font>
+                            </Text>
+                        </HBox>
+
+                        <!-- Box for humidity -->
+                        <HBox alignment="CENTER">
+                            <!-- Image for humidity -->
+                            <ImageView fitHeight="50.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                                <!-- Set image for the humidity -->
+                                <image>
+                                    <Image url="@images/humidity.png" />
+                                </image>
+                                <!-- Set margin for the ImageView -->
+                                <HBox.margin>
+                                    <Insets right="44.0" />
+                                </HBox.margin>
+                            </ImageView>
+                            <!-- Text for humidity -->
+                            <Text fx:id="humidity" text="Humidity">
+                                <!-- Set font for the text -->
+                                <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                </font>
+                            </Text>
+                        </HBox>
+
+                        <!-- Box for wind speed -->
+                        <HBox alignment="CENTER">
+                            <!-- Image for wind speed -->
+                            <ImageView fitHeight="57.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                <!-- Set image for the wind speed -->
+                                <image>
+                                    <Image url="@images/windspeed.png" />
+                                </image>
+                                <!-- Set margin for the ImageView -->
+                                <HBox.margin>
+                                    <Insets right="35.0" />
+                                </HBox.margin>
+                            </ImageView>
+                            <!-- Text for wind speed -->
+                            <Text fx:id="wind_kph" text="Wind Speed">
+                                <!-- Set font for the text -->
+                                <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                </font>
+                            </Text>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+
+            <!-- Bottom Section -->
+            <VBox prefHeight="18.0" prefWidth="564.0" style="-fx-background-color: rgba(255, 255, 255, 0.5); padding: 10px;">
+                <!-- Label for error message -->
+                <Label fx:id="errMsgLabel" prefHeight="18.0" prefWidth="387.0" text="Data not Available" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                    <!-- Set margin for the label -->
+                    <BorderPane.margin>
+                        <Insets top="20.0" />
+                    </BorderPane.margin>
+                    <!-- Set margin for the VBox -->
+                    <VBox.margin>
+                        <Insets left="270.0" top="30.0" />
+                    </VBox.margin>
+                </Label>
+            </VBox>
+        </VBox>
+
+    </children>
+</AnchorPane>
